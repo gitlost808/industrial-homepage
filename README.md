@@ -19,7 +19,7 @@ Edit **content.yaml**. It contains navigation labels, page metadata, name, biogr
 
 Project and contact URLs accept `https://`, `http://`, and `mailto:`. Blank URLs produce no links. Remove all entries with `projects.items: []` to hide the work section and its navigation link, or `contact.links: []` to show the configurable contact placeholder. Optional lists can also be omitted. Quote text containing a colon followed by a space. Run `npm run check` to catch invalid configuration; production builds run this check automatically. Content is inserted as text, never as HTML.
 
-The original apartment-block illustration is in **public/concrete.svg**. Colors, spacing, responsive breakpoints, and textures live in **src/style.css**. All imagery and fonts are bundled locally. Fonts use Barlow Condensed, IBM Plex Mono, and Inter via Fontsource, with system fallbacks. No analytics or backend services are included.
+The AI-generated monochrome apartment-block image is in **public/concrete.webp**. Colors, spacing, responsive breakpoints, and textures live in **src/style.css**. All imagery and fonts are bundled locally. Fonts use Barlow Condensed, IBM Plex Mono, and Inter via Fontsource, with system fallbacks. No analytics or backend services are included.
 
 ## Verify
 
