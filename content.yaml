@@ -1,0 +1,63 @@
+# All visible copy lives here. Replace the sample content before sharing.
+# Empty project URLs and contact URLs are hidden; no dead links are rendered.
+site:
+  title: Your Name — Personal Index
+  description: A personal space for work, ideas, and things in progress.
+  language: en
+  mark: YN
+  index: Personal index / Vol. 01
+  skipLink: Skip to content
+  navigationLabel: Main navigation
+  navigation:
+    about: About
+    projects: Selected work
+    contact: Contact
+hero:
+  eyebrow: Independent by design
+  name: Your Name.
+  lines: [Your, Name.]
+  description: A personal space for work, ideas, and things in progress.
+  action: Explore the index
+  note: A work in progress. Always.
+  artworkLabel: Concrete study / No. 001
+  artworkDescription: An original monochrome illustration of a weathered concrete apartment block under a dark sky.
+  sideLabel: Form / Function / Feeling
+about:
+  label: The person behind the work
+  heading: A little context.
+  paragraphs:
+    - This is where your story goes. A few honest words about who you are, what you do, and what keeps you curious.
+    - No pitch needed. Just the things that matter to you, the way you work, and what you want to put into the world.
+  note: Replace this introduction with your own.
+projects:
+  label: Selected work
+  heading: Things I've put into the world.
+  note: Sample entries — replace with your own work.
+  openLabel: View project
+  items:
+    - title: Your first project
+      category: Project / 001
+      description: What you made, why it exists, and the part you played. Add a link when you're ready.
+      url: ''
+    - title: Something in progress
+      category: Experiment / 002
+      description: A space for an unfinished idea, a small experiment, or something you're learning.
+      url: ''
+    - title: A different kind of work
+      category: Personal / 003
+      description: Not everything needs to fit a category. Put something here that feels like you.
+      url: ''
+contact:
+  label: The next conversation
+  heading: Leave a signal.
+  description: Have something in mind? This is where we connect.
+  emptyMessage: Add your email or social links in content.yaml.
+  links:
+    - label: Email
+      url: ''
+    - label: GitHub
+      url: ''
+footer:
+  credit: Your Name / Personal index
+  note: Built with intention. Left a little rough.
+  backToTop: Back to top

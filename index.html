@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#191a18" />
+    <meta name="description" content="A personal space for work, ideas, and things in progress." />
+    <title>Personal Index</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main" id="skip-link"></a>
+    <header class="header shell">
+      <a class="identity" href="#top"><span class="mark" aria-hidden="true"></span><span class="index-label"></span></a>
+      <nav class="navigation"></nav>
+    </header>
+    <main id="main" tabindex="-1">
+      <section class="hero shell" aria-labelledby="hero-name">
+        <div class="hero-copy">
+          <p class="eyebrow hero-eyebrow"><span class="status-dot" aria-hidden="true"></span><span></span></p>
+          <h1 id="hero-name"></h1>
+          <p class="hero-description"></p>
+          <a class="explore" href="#projects"><span></span><span aria-hidden="true">↘</span></a>
+        </div>
+        <figure class="architecture">
+          <img src="/concrete.svg" alt="" width="1100" height="1000" fetchpriority="high" />
+          <figcaption><span></span><span aria-hidden="true">[ 01 — 03 ]</span></figcaption>
+        </figure>
+        <span class="side-label" aria-hidden="true"></span>
+        <div class="hero-bottom"><span class="hero-note"></span><span class="scroll-mark" aria-hidden="true">↓</span></div>
+      </section>
+      <section id="about" class="about section shell" aria-labelledby="about-heading">
+        <p class="section-label"><span class="section-number" aria-hidden="true">01 /</span><span class="about-label"></span></p>
+        <div class="about-content"><h2 id="about-heading"></h2><div class="about-paragraphs"></div><p class="editor-note about-note"></p></div>
+      </section>
+      <section id="projects" class="projects section shell" aria-labelledby="projects-heading">
+        <div class="section-heading"><p class="section-label"><span class="section-number" aria-hidden="true">02 /</span><span class="projects-label"></span></p><h2 id="projects-heading"></h2><p class="editor-note projects-note"></p></div>
+        <div class="project-list"></div>
+      </section>
+      <section id="contact" class="contact section shell" aria-labelledby="contact-heading">
+        <p class="section-label"><span class="section-number" aria-hidden="true">03 /</span><span class="contact-label"></span></p>
+        <div class="contact-content"><h2 id="contact-heading"></h2><p class="contact-description"></p><div class="contact-links"></div></div>
+      </section>
+    </main>
+    <footer class="footer shell"><span class="footer-credit"></span><span class="footer-note"></span><a href="#top" class="back-to-top"></a></footer>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
