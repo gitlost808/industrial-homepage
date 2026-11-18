@@ -48,3 +48,7 @@ npm run build
 ```
 
 Configuration tests cover YAML parsing, optional entries, malformed configuration, and safe URL protocols. Check the page at mobile and desktop widths, tab through its links, and enable reduced motion when changing the layout.
+
+For the responsive browser checks, install Chromium once with `npx playwright install chromium --only-shell`. Start `npm run preview -- --port 4173` after building, then run `npm run test:mobile` in another terminal. To check the deployed site, run `npm run test:mobile -- https://portfolio.example.com/`.
+
+The browser check covers six phone portrait sizes, four phone landscape sizes, two tablet sizes, and desktop. It checks text clipping, horizontal overflow, name fitting, image captions, section boundaries, touch target sizes, anchor navigation, orientation changes, keyboard access, and reduced motion. It uses Chromium emulation; physical-device Safari behavior still needs a real-device check.
