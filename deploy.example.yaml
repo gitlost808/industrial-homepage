@@ -1,0 +1,6 @@
+# Copy to deploy.yaml and set your destination. deploy.yaml is ignored by Git.
+# Authentication uses your existing SSH key or agent; do not put passwords here.
+host: sftp.example.com
+port: 22
+user: deploy
+directory: /portfolio
