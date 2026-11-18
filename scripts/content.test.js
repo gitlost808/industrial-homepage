@@ -6,11 +6,11 @@ import { readContent, safeUrl } from '../src/content.js';
 
 const source = readFileSync(new URL('../content.yaml', import.meta.url), 'utf8');
 
-test('sample content is valid, with intentionally empty links', () => {
-  const content = readContent(source);
-  assert.equal(content.site.language, 'en');
-  assert.equal(content.projects.items.length, 3);
-  assert.ok(content.projects.items.every(item => !item.url));
+test('project links may be intentionally empty', () => {
+  const content = parse(source);
+  content.projects.items = [{ title: 'A project', category: 'Personal', description: 'A description', url: '' }];
+  const result = readContent(stringify(content));
+  assert.equal(result.projects.items[0].url, '');
 });
 
 test('missing and empty optional lists are accepted', () => {
@@ -38,12 +38,12 @@ test('links permit web and email protocols and reject executable protocols', () 
     assert.equal(safeUrl(value), null);
   }
   const content = parse(source);
-  content.contact.links[0].url = 'javascript:alert(1)';
+  content.contact.links = [{ label: 'Email', url: 'javascript:alert(1)' }];
   assert.throws(() => readContent(stringify(content)), /links must use/);
 });
 
 test('project URLs must be strings', () => {
   const content = parse(source);
-  content.projects.items[0].url = 123;
+  content.projects.items = [{ title: 'A project', category: 'Personal', description: 'A description', url: 123 }];
   assert.throws(() => readContent(stringify(content)), /URLs must be text/);
 });
