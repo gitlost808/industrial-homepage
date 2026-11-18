@@ -15,22 +15,22 @@ Open the local URL printed by Vite. Use `npm run build` for production and `npm 
 
 ## Deploy via SFTP
 
-Replace the example server, account, port, and remote directory below with your own SFTP destination. Keep personal deployment settings outside the repository.
-
-After editing content, rebuild and upload using your configured SSH key or agent:
+Copy the example destination to an ignored local file and edit it for your server:
 
 ```sh
-npm test && npm run build
-sftp -oBatchMode=yes -oStrictHostKeyChecking=yes -P 22 -b - deploy@sftp.example.com <<'SFTP'
-put -r dist/assets /portfolio/
-put dist/concrete.webp /portfolio/concrete.webp
-put dist/favicon.svg /portfolio/favicon.svg
-put dist/index.html /portfolio/.index-next.html
-rename /portfolio/.index-next.html /portfolio/index.html
-SFTP
+cp deploy.example.yaml deploy.yaml
 ```
 
-The server's SSH host key must already be trusted locally. Assets upload before the HTML is switched into place. Existing files are preserved, including older hashed assets, so already-open pages can still load them. Only the built `dist/` files are uploaded; source files and credentials stay local. Content changes need another build and upload to appear online.
+Set `host`, `user`, `directory` (an existing absolute remote path), and optionally `port` (defaults to 22). `deploy.yaml` is ignored by Git. Authentication uses your SSH key or agent; keep passwords and private keys out of both configuration files.
+
+```sh
+npm run deploy -- --dry-run
+npm run deploy
+```
+
+Both commands run the configuration tests and build the current content. Dry run prints the upload plan without connecting to the server. Deploy uploads every production asset, then uploads the new HTML under a unique temporary name and renames it to `index.html` last. A failed test, build, or SFTP command stops deployment. No remote files are deleted; older hashed assets remain available to already-open pages.
+
+The local `sftp` command is required for uploading. The server's SSH host key must already be trusted locally, and key or agent authentication must work without a password prompt. Only built files from `dist/` are uploaded. The optional responsive browser checks are separate; use `npm run test:mobile` with a running preview before deploying layout changes.
 
 ## Make it yours
 
