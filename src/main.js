@@ -37,6 +37,27 @@ for (const line of c.hero.lines) {
   span.setAttribute('aria-hidden', 'true');
   find('h1').append(span);
 }
+
+// Keep the configured name lines intact, sharing a size set by the longest one.
+// Measure again when the local font finishes loading or the viewport changes.
+const nameHeading = find('h1');
+const nameLines = [...nameHeading.children];
+function fitName() {
+  nameHeading.style.setProperty('--name-scale', '1');
+  const available = nameHeading.clientWidth - 4;
+  const longest = Math.max(...nameLines.map(line => line.getBoundingClientRect().width));
+  if (available > 0 && longest > available) {
+    nameHeading.style.setProperty('--name-scale', String(available / longest));
+  }
+}
+fitName();
+document.fonts.ready.then(fitName);
+let nameResizeFrame;
+window.addEventListener('resize', () => {
+  cancelAnimationFrame(nameResizeFrame);
+  nameResizeFrame = requestAnimationFrame(fitName);
+});
+
 set('.hero-description', c.hero.description);
 set('.explore > span:first-child', c.hero.action);
 set('.hero-note', c.hero.note);

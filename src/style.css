@@ -187,12 +187,14 @@ img {
   line-height:.8;
   text-transform:uppercase;
   letter-spacing:-.025em;
-  margin-left:-5px;
-  overflow-wrap:anywhere
+  margin-left:-5px
 }
 
 .name-line {
-  display:block
+  display:block;
+  width:max-content;
+  white-space:nowrap;
+  font-size:calc(1em * var(--name-scale, 1))
 }
 
 .name-line+.name-line {
@@ -605,7 +607,7 @@ figcaption {
     padding-block:60px
   }
   .about,.contact,.section-heading {
-    grid-template-columns:1fr;
+    grid-template-columns:minmax(0,1fr);
     gap:30px
   }
   .about h2 {
@@ -649,7 +651,7 @@ figcaption {
     padding-block:65px 75px
   }
   .contact h2 {
-    font-size:76px
+    font-size:clamp(48px,12vw,76px)
   }
   .contact-description {
     font-size:13px
