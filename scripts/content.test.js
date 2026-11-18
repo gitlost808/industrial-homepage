@@ -1,10 +1,23 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { stringify, parse } from 'yaml';
 import { readContent, safeUrl } from '../src/content.js';
+import { resolveContentPath } from './content-source.js';
 
-const source = readFileSync(new URL('../content.yaml', import.meta.url), 'utf8');
+const source = readFileSync(new URL('../content.example.yaml', import.meta.url), 'utf8');
+
+test('fresh checkouts use the example and personal content overrides it locally', () => {
+  const root = mkdtempSync(join(tmpdir(), 'homepage-content-'));
+  try {
+    writeFileSync(join(root, 'content.example.yaml'), source);
+    assert.equal(resolveContentPath(root), join(root, 'content.example.yaml'));
+    writeFileSync(join(root, 'content.yaml'), source);
+    assert.equal(resolveContentPath(root), join(root, 'content.yaml'));
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
 
 test('project links may be intentionally empty', () => {
   const content = parse(source);

@@ -1,4 +1,4 @@
-import rawContent from '../content.yaml?raw';
+import rawContent from 'site-content?raw';
 import { readContent, safeUrl } from './content.js';
 import '@fontsource/barlow-condensed/latin-600.css';
 import '@fontsource/barlow-condensed/latin-700.css';

@@ -15,18 +15,18 @@ Open the local URL printed by Vite. Use `npm run build` for production and `npm 
 
 ## Deploy via SFTP
 
-The site is served at **https://portfolio.example.com/**. Its SFTP destination is `sftp://deploy@sftp.example.com:22/portfolio.example.com`.
+Replace the example server, account, port, and remote directory below with your own SFTP destination. Keep personal deployment settings outside the repository.
 
 After editing content, rebuild and upload using your configured SSH key or agent:
 
 ```sh
 npm test && npm run build
 sftp -oBatchMode=yes -oStrictHostKeyChecking=yes -P 22 -b - deploy@sftp.example.com <<'SFTP'
-put -r dist/assets /portfolio.example.com/
-put dist/concrete.webp /portfolio.example.com/concrete.webp
-put dist/favicon.svg /portfolio.example.com/favicon.svg
-put dist/index.html /portfolio.example.com/.index-next.html
-rename /portfolio.example.com/.index-next.html /portfolio.example.com/index.html
+put -r dist/assets /portfolio/
+put dist/concrete.webp /portfolio/concrete.webp
+put dist/favicon.svg /portfolio/favicon.svg
+put dist/index.html /portfolio/.index-next.html
+rename /portfolio/.index-next.html /portfolio/index.html
 SFTP
 ```
 
@@ -34,7 +34,15 @@ The server's SSH host key must already be trusted locally. Assets upload before 
 
 ## Make it yours
 
-Edit **content.yaml**. It contains navigation labels, page metadata, name, biography, projects, contact links, and footer copy. The initial entries are explicitly sample content. `hero.name` is the accessible full name; `hero.lines` controls the displayed line breaks. For long names, add a line break using another list entry.
+The repository contains only **content.example.yaml**, with anonymous sample copy. A fresh checkout uses it automatically. To personalize your site, copy it to **content.yaml** before starting the dev server:
+
+```sh
+cp content.example.yaml content.yaml
+```
+
+`content.yaml` is ignored by Git and overrides the example for development and production builds. Keep your real biography, contact details, and project information in that local file. Restart the dev server when creating or removing the override; edits to an existing file refresh normally. Tests always use the example.
+
+Both files contain navigation labels, page metadata, name, biography, projects, contact links, and footer copy. `hero.name` is the accessible full name; `hero.lines` controls the displayed line breaks. For long names, add a line break using another list entry.
 
 Project and contact URLs accept `https://`, `http://`, and `mailto:`. Blank URLs produce no links. Remove all entries with `projects.items: []` to hide the work section and its navigation link, or `contact.links: []` to show the configurable contact placeholder. Optional lists can also be omitted. Quote text containing a colon followed by a space. Run `npm run check` to catch invalid configuration; production builds run this check automatically. Content is inserted as text, never as HTML.
 
@@ -49,6 +57,6 @@ npm run build
 
 Configuration tests cover YAML parsing, optional entries, malformed configuration, and safe URL protocols. Check the page at mobile and desktop widths, tab through its links, and enable reduced motion when changing the layout.
 
-For the responsive browser checks, install Chromium once with `npx playwright install chromium --only-shell`. Start `npm run preview -- --port 4173` after building, then run `npm run test:mobile` in another terminal. To check the deployed site, run `npm run test:mobile -- https://portfolio.example.com/`.
+For the responsive browser checks, install Chromium once with `npx playwright install chromium --only-shell`. Start `npm run preview -- --port 4173` after building, then run `npm run test:mobile` in another terminal. To check a deployed site, run `npm run test:mobile -- https://portfolio.example.com/`.
 
 The browser check covers six phone portrait sizes, four phone landscape sizes, two tablet sizes, and desktop. It checks text clipping, horizontal overflow, name fitting, image captions, section boundaries, touch target sizes, anchor navigation, orientation changes, keyboard access, and reduced motion. It uses Chromium emulation; physical-device Safari behavior still needs a real-device check.
